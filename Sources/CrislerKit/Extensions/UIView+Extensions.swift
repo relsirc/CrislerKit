@@ -11,7 +11,7 @@ import UIKit
 extension UIView {
     
     // draws a dashed line in the view
-    func addDashLine(){
+    public func addDashLine(){
         let layer: CAShapeLayer = CAShapeLayer()
         layer.frame = self.bounds
         layer.strokeColor = UIColor.darkGray.cgColor
@@ -24,7 +24,7 @@ extension UIView {
         self.layer.addSublayer(layer)
     }
     
-    func innerShadow() {
+    public func innerShadow() {
         let path = UIBezierPath(rect: CGRect(x: -5.0, y: -5.0, width: self.bounds.size.width + 5.0, height: 5.0 ))
         let innerLayer = CALayer()
         innerLayer.frame = self.bounds
@@ -36,7 +36,7 @@ extension UIView {
         self.layer.addSublayer(innerLayer)
     }
     
-    func addShadow(opacity: Float = 0.2, color: CGColor = UIColor.black.cgColor, offset: CGSize = CGSize(width: 2.0, height: -1.0), radius: CGFloat = 5.0) {
+    public func addShadow(opacity: Float = 0.2, color: CGColor = UIColor.black.cgColor, offset: CGSize = CGSize(width: 2.0, height: -1.0), radius: CGFloat = 5.0) {
         self.layer.shadowOpacity = opacity
         self.layer.shadowColor = color
         self.layer.shadowOffset = offset
@@ -44,7 +44,7 @@ extension UIView {
     }
 
     
-    func contains(point: CGPoint) -> Bool {
+    public func contains(point: CGPoint) -> Bool {
         return self.frame.contains(point)
     }
 }

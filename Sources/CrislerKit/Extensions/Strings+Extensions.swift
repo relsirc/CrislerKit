@@ -9,7 +9,7 @@ import Foundation
 
 
 extension NSRegularExpression {
-    func matches(_ string: String) -> Bool {
+    public func matches(_ string: String) -> Bool {
         let range = NSRange(location: 0, length: string.utf16.count)
         return firstMatch(in: string, options: [], range: range) != nil
     }
@@ -18,30 +18,30 @@ extension NSRegularExpression {
 
 extension String {
     
-    func isValidEmail() -> Bool {
+    public func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let result = emailTest.evaluate(with: self)
         return result
     }
     
-    var isKatakana: Bool {
+    public var isKatakana: Bool {
         let range = "[ァ-・ヽヾ゛゜ー]"
         let regex = try! NSRegularExpression(pattern: range)
         return regex.matches(self)
     }
     
-    var isKanji: Bool {
+    public var isKanji: Bool {
         let range = "^[\u{3005}\u{3007}\u{303b}\u{3400}-\u{9fff}\u{f900}-\u{faff}\u{20000}-\u{2ffff}]+$"
         return NSPredicate(format: "SELF MATCHES %@", range).evaluate(with: self)
     }
     
-    func removeComma() -> String {
+    public func removeComma() -> String {
         let tmp = self.replacingOccurrences(of: ",", with: "")
         return tmp
     }
     
-    func addComma() -> String {
+    public func addComma() -> String {
         guard let number = Double(self) else {
             return ""
         }
@@ -57,7 +57,7 @@ extension String {
         return ""
     }
         
-    func addCommaWithoutRounding() -> String {
+    public func addCommaWithoutRounding() -> String {
         guard let number = Double(self) else {
             return ""
         }
@@ -72,7 +72,7 @@ extension String {
         return ""
     }
     
-    func addCommaForDouble() -> String {
+    public func addCommaForDouble() -> String {
         guard let number = Double(self) else {
             return ""
         }
@@ -105,7 +105,7 @@ extension String {
         }
     }
     
-    func roundOffDoubleToTheSecond(double: Double) -> String {
+    public func roundOffDoubleToTheSecond(double: Double) -> String {
         let divisor = pow(10.0, Double(2))
         let toFormat = (double * divisor).rounded() / divisor
         return String(format: "%.2f", toFormat).addCommaForDouble()

@@ -10,7 +10,7 @@ import SafariServices
 
 extension UIViewController {
     
-    func openWebsite(urlString: String) {
+    public func openWebsite(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.delegate = self
