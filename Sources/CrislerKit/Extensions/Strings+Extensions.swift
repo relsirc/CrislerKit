@@ -110,4 +110,29 @@ extension String {
         let toFormat = (double * divisor).rounded() / divisor
         return String(format: "%.2f", toFormat).addCommaForDouble()
     }
+    
+    // Get the english date of the week from a String Date
+    func getDayOfTheWeek() -> String {
+        let weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ]
+        
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate,
+                                       .withTime,
+                                       .withDashSeparatorInDate,
+                                       .withColonSeparatorInTime]
+        if let date = dateFormatter.date(from: self) {
+            let weekday = Calendar.autoupdatingCurrent.component(.weekday, from: date) 
+            return weekdays[weekday - 1]
+        }
+        
+        return ""
+    }
 }
